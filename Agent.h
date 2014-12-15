@@ -63,6 +63,8 @@ class Agent
     inline unsigned int Get_Perception (void) const;
     inline unsigned int Get_Contact (void) const;
 
+    inline void Print_Vect(void) const;
+
     // =======================================================================
     //                            Accessors: setters
     // =======================================================================
@@ -119,6 +121,9 @@ class Agent
     unsigned int y1;
     unsigned int y2;
     unsigned int y3;
+
+    Vect* pos;
+    Vect* speed;
     
   
 };
@@ -152,6 +157,17 @@ inline unsigned int Agent:: Get_Perception (void) const
 inline unsigned int Agent:: Get_Contact (void) const
 {
     return CONTACT;
+}
+
+inline void Agent:: Print_Vect(void) const
+{
+    printf("x pos = %ld \n", pos->Get_X() );
+    printf("y pos = %ld \n", pos->Get_Y() );
+    printf("norm pos = %lf \n", pos->Get_Norm() );
+
+    printf("x speed = %ld \n", speed->Get_X() );
+    printf("y speed = %ld \n", speed->Get_Y() );
+    printf("norm speed = %lf \n", speed->Get_Norm() );
 }
 
 // ===========================================================================

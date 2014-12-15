@@ -66,4 +66,6 @@ void test_getters_agent(Agent& my_test_agent){
     printf("Perception %ld \n", my_test_agent.Get_Perception());
     printf("Contact %ld \n", my_test_agent.Get_Contact());
 
+    my_test_agent.Print_Vect();
+
 }
