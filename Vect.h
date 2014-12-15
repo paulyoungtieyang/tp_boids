@@ -6,9 +6,8 @@
 
 
 
-#ifndef __AGENT_H__
-#define __AGENT_H__
-
+#ifndef __VECT_H__
+#define __VECT_H__
 
 
 // ===========================================================================
@@ -16,13 +15,13 @@
 // ===========================================================================
 #include <cstdio>
 #include <cstdlib>
-
+#include <math.h>
 
 
 // ===========================================================================
 //                                Project Files
 // ===========================================================================
-#include "Vect.h"
+
 
 
 
@@ -35,7 +34,7 @@
 
 
 
-class Agent
+class Vect
 {
   public :
     
@@ -46,23 +45,19 @@ class Agent
     // =======================================================================
     //                               Constructors
     // =======================================================================
-    Agent(void);
+    Vect(void);
 
     // =======================================================================
     //                                Destructor
     // =======================================================================
-    virtual ~Agent(void);
+    virtual ~Vect(void);
 
     // =======================================================================
     //                            Accessors: getters
     // =======================================================================
-    inline unsigned int Get_y1 (void) const; 
-    inline unsigned int Get_y2 (void) const; 
-    inline unsigned int Get_y3 (void) const; 
-
-    inline unsigned int Get_Perception (void) const;
-    inline unsigned int Get_Contact (void) const;
-
+    inline unsigned int Get_X (void) const;
+    inline unsigned int Get_Y (void) const;
+    inline long Get_Norm (void) const;
     // =======================================================================
     //                            Accessors: setters
     // =======================================================================
@@ -70,12 +65,13 @@ class Agent
     // =======================================================================
     //                                Operators
     // =======================================================================
-
+    unsigned int x;
+    unsigned int y;
+    long norm;
+    
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    long Speed (void);
-    long Speed_t (void);
 
     // =======================================================================
     //                             Public Attributes
@@ -90,12 +86,12 @@ class Agent
     // =======================================================================
     //                            Forbidden Constructors
     // =======================================================================
-    /*Template_class(void)
+    /*Vect(void)
     {
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
     };*/
-    Agent(const Agent &model)
+    Vect(const Vect &model)
     {
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
@@ -109,51 +105,26 @@ class Agent
     // =======================================================================
     //                             Protected Attributes
     // =======================================================================
-    
-    int index;
-    
-    
-    static unsigned int PERCEPTION;
-    static unsigned int CONTACT;
-    
-    unsigned int y1;
-    unsigned int y2;
-    unsigned int y3;
-    
-  
 };
 
 
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
-
-
-inline unsigned int Agent:: Get_y1 (void) const
+inline unsigned int Vect:: Get_X (void) const
 {
-    return y1;
+    return x;
 } 
 
-inline unsigned int Agent:: Get_y2 (void) const
+inline unsigned int Vect:: Get_Y (void) const
 {
-    return y2;
-} 
-
-inline unsigned int Agent:: Get_y3 (void) const
-{
-    return y3;
-} 
-
-inline unsigned int Agent:: Get_Perception (void) const
-{
-    return PERCEPTION;
+    return y;
 }
 
-inline unsigned int Agent:: Get_Contact (void) const
+inline long Vect:: Get_Norm (void) const
 {
-    return CONTACT;
+    return sqrt( (x*x) + (y*y));
 }
-
 // ===========================================================================
 //                              Setters' definitions
 // ===========================================================================
@@ -167,5 +138,5 @@ inline unsigned int Agent:: Get_Contact (void) const
 // ===========================================================================
 
 
-#endif // __AGENT_H__
+#endif // __VECT_H__
 

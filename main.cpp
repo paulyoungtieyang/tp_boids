@@ -18,7 +18,7 @@
 //                             Include Project Files
 // ===========================================================================
 #include "Agent.h"
-
+#include "Vect.h"
 // ===========================================================================
 //                               Static Attributes
 // ===========================================================================
@@ -58,12 +58,7 @@ int main(int argc, char* argv[])
 // ===========================================================================
 
 void test_getters_agent(Agent& my_test_agent){
-	printf("Posx %ld \n", my_test_agent.Get_posX());
-	printf("Posy%ld \n", my_test_agent.Get_posY());
 	
-	printf("Spx %ld \n", my_test_agent.Get_spX());
-	printf("Spy %ld \n", my_test_agent.Get_spY());
-
 	printf("y1 %ld \n", my_test_agent.Get_y1());
 	printf("y2 %ld \n", my_test_agent.Get_y2());
     printf("y3 %ld \n", my_test_agent.Get_y3());
