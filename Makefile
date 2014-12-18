@@ -11,8 +11,11 @@ Agent.o: Agent.h Agent.cpp
 Vect.o: Vect.h Vect.cpp
 	g++ -g -c Vect.cpp -o Vect.o
 
-test.out: main.o Agent.o Vect.o
-	g++ -g main.o Agent.o Vect.o -o test.out
+Area.o: Area.h Area.cpp
+	g++ -g -c Area.cpp -o Area.o
+
+test.out: main.o Agent.o Vect.o Area.o
+	g++ -g main.o Agent.o Vect.o Area.o  -o test.out
 
 clean:
 	rm *.o

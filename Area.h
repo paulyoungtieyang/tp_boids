@@ -6,9 +6,8 @@
 
 
 
-#ifndef __AGENT_H__
-#define __AGENT_H__
-
+#ifndef __AREA_H__
+#define __AREA_H__
 
 
 // ===========================================================================
@@ -22,8 +21,8 @@
 // ===========================================================================
 //                                Project Files
 // ===========================================================================
-#include "Vect.h"
-#include "Area.h"
+#include "Agent.h"
+
 
 // ===========================================================================
 //                              Class declarations
@@ -34,7 +33,7 @@
 
 
 
-class Agent
+class Area
 {
   public :
     
@@ -45,24 +44,16 @@ class Agent
     // =======================================================================
     //                               Constructors
     // =======================================================================
-    Agent(void);
+    Area(void);
 
     // =======================================================================
     //                                Destructor
     // =======================================================================
-    virtual ~Agent(void);
+    virtual ~Area(void);
 
     // =======================================================================
     //                            Accessors: getters
     // =======================================================================
-    inline unsigned int Get_y1 (void) const; 
-    inline unsigned int Get_y2 (void) const; 
-    inline unsigned int Get_y3 (void) const; 
-
-    inline unsigned int Get_Perception (void) const;
-    inline unsigned int Get_Contact (void) const;
-
-    inline void Print_Vect(void) const;
 
     // =======================================================================
     //                            Accessors: setters
@@ -75,7 +66,6 @@ class Agent
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    void next_pos_calc(void);
 
     // =======================================================================
     //                             Public Attributes
@@ -90,12 +80,12 @@ class Agent
     // =======================================================================
     //                            Forbidden Constructors
     // =======================================================================
-    /*Template_class(void)
+    /*Area(void)
     {
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
     };*/
-    Agent(const Agent &model)
+    Area(const Area &model)
     {
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
@@ -109,67 +99,18 @@ class Agent
     // =======================================================================
     //                             Protected Attributes
     // =======================================================================
-    
-    int index;
-    
-    
-    static unsigned int PERCEPTION;
-    static unsigned int CONTACT;
-    
-    unsigned int y1;
-    unsigned int y2;
-    unsigned int y3;
+    unsigned int Width;
+    unsigned int Height;
 
-    Vect* pos;
-    Vect* speed;
+    static double TIME_STEP;
     
-    Vect* next_pos;
-    Vect* next_speed;
 
-  
 };
 
 
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
-
-
-inline unsigned int Agent:: Get_y1 (void) const
-{
-    return y1;
-} 
-
-inline unsigned int Agent:: Get_y2 (void) const
-{
-    return y2;
-} 
-
-inline unsigned int Agent:: Get_y3 (void) const
-{
-    return y3;
-} 
-
-inline unsigned int Agent:: Get_Perception (void) const
-{
-    return PERCEPTION;
-}
-
-inline unsigned int Agent:: Get_Contact (void) const
-{
-    return CONTACT;
-}
-
-inline void Agent:: Print_Vect(void) const
-{
-    printf("x pos = %ld \n", pos->Get_X() );
-    printf("y pos = %ld \n", pos->Get_Y() );
-    printf("norm pos = %lf \n", pos->Get_Norm() );
-
-    printf("x speed = %ld \n", speed->Get_X() );
-    printf("y speed = %ld \n", speed->Get_Y() );
-    printf("norm speed = %lf \n", speed->Get_Norm() );
-}
 
 // ===========================================================================
 //                              Setters' definitions
@@ -184,5 +125,5 @@ inline void Agent:: Print_Vect(void) const
 // ===========================================================================
 
 
-#endif // __AGENT_H__
+#endif // __AREA_H__
 
