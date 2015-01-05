@@ -46,6 +46,7 @@ class Agent
     //                               Constructors
     // =======================================================================
     Agent(void);
+    Agent(int index_to_give);
 
     // =======================================================================
     //                                Destructor
@@ -75,7 +76,12 @@ class Agent
     // =======================================================================
     //                              Public Methods
     // =======================================================================
+    
+/*Calcul de la prochaine position)*/
     void next_pos_calc(double dt);
+
+/*Calcul du nombre d'agents dans le rayon de perception */
+    int get_K (Agent* tab, int nb_agent);
 
     // =======================================================================
     //                             Public Attributes
@@ -110,8 +116,6 @@ class Agent
     //                             Protected Attributes
     // =======================================================================
     
-    int index;
-    
     
     unsigned int PERCEPTION;
     unsigned int CONTACT;
@@ -119,6 +123,8 @@ class Agent
     unsigned int y1;
     unsigned int y2;
     unsigned int y3;
+
+    int index;
 
     Vect* pos;
     Vect* speed;
