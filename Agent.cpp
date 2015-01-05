@@ -40,6 +40,9 @@ Agent::Agent(void)
 	y2=0;
 	y3=0;
 
+    PERCEPTION = 0;
+    CONTACT = 0;
+
 	pos= new Vect();
 	speed= new Vect();
 
@@ -57,9 +60,9 @@ Agent::~Agent(void)
 // ===========================================================================
 //                                 Public Methods
 // ===========================================================================
-void Agent:: next_pos_calc(void){
-	next_pos->x= pos->x + TIME_STEP*speed->x;
-	next_pos->y= pos->y + TIME_STEP*speed->y;
+void Agent:: next_pos_calc(double dt){
+	next_pos->x= pos->x + dt*speed->x;
+	next_pos->y= pos->y + dt*speed->y;
 	next_pos->Set_Norm();
 }
 

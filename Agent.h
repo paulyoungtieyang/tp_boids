@@ -75,7 +75,7 @@ class Agent
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    void next_pos_calc(void);
+    void next_pos_calc(double dt);
 
     // =======================================================================
     //                             Public Attributes
@@ -113,8 +113,8 @@ class Agent
     int index;
     
     
-    static unsigned int PERCEPTION;
-    static unsigned int CONTACT;
+    unsigned int PERCEPTION;
+    unsigned int CONTACT;
     
     unsigned int y1;
     unsigned int y2;

@@ -36,6 +36,25 @@
 // ===========================================================================
 Area::Area(void)
 {
+	
+	TIME_STEP=0;
+	Width=0;
+    Height=0;
+
+    Nb_Agent=0;
+    Nb_Predator=0;
+
+}
+
+Area::Area(int H, int W, int Nb_A, int Nb_P, double step)
+{
+	Width=W;
+	Height=H;
+	Nb_Agent=Nb_A;
+	Nb_Predator=Nb_P;
+	TIME_STEP=step;
+
+	
 }
 
 // ===========================================================================
