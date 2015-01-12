@@ -19,21 +19,20 @@
 // ===========================================================================
 #include "Agent.h"
 #include "Vect.h"
-#include "Area.h"
+#include "Prey.h"
+#include "Predator.h"
+//#include "Area.h"
 // ===========================================================================
 //                               Static Attributes
 // ===========================================================================
 
 
-unsigned int Agent::PERCEPTION = 0;
-unsigned int Agent::CONTACT = 0;
-double Area::TIME_STEP = 0.1;
+
 
 
 // ===========================================================================
 //                         Declare Miscellaneous Functions
 // ===========================================================================
-void test_getters_agent(Agent& my_test_agent);
 
 
 
@@ -46,9 +45,32 @@ int main(int argc, char* argv[])
   printf("Hello World !\n");
 
   Agent* Agent_1 = new Agent();
+  printf("\nAgent 1\n");
+  Agent_1->Print_Vect();
+
+  Agent* Agent_2 = new Agent(50,50,50);
+  printf("\nAgent 2\n");
+  Agent_2->Print_Vect();
+
+  Prey* Prey_1= new Prey();
+  printf("\nProie 1\n");
+  Prey_1->Print_Vect_Prey();
+
+  Prey* Prey_2 = new Prey(12,12,12,12,12,12);
+  printf("\nProie 2\n");
+  Prey_2->Print_Vect_Prey();
+
+  Predator* Predator_1= new Predator (20,20);
+  printf("\nPredator 1\n");
+  Predator_1->Print_Vect_Predator();
   
-  //test des getters sur Agent
-  test_getters_agent(*Agent_1);
+  Prey* Prey_3= new Prey(*Prey_2, 5);
+  printf("\nProie 3\n");
+  Prey_3->Print_Vect_Prey();
+
+  Predator* Predator_2= new Predator (*Predator_1,1);
+  printf("\nPredator 2\n");
+  Predator_2->Print_Vect_Predator();
 
   return 0;
 }
@@ -59,15 +81,3 @@ int main(int argc, char* argv[])
 //                         Define Miscellaneous Functions
 // ===========================================================================
 
-void test_getters_agent(Agent& my_test_agent){
-	
-	printf("y1 %ld \n", my_test_agent.Get_y1());
-	printf("y2 %ld \n", my_test_agent.Get_y2());
-  printf("y3 %ld \n", my_test_agent.Get_y3());
-
-  printf("Perception %ld \n", my_test_agent.Get_Perception());
-  printf("Contact %ld \n", my_test_agent.Get_Contact());
-
-  my_test_agent.Print_Vect();
-
-}

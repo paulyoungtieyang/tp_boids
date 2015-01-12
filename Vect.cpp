@@ -45,7 +45,7 @@ Vect::Vect(int x_to_give, int y_to_give)
 {
     x=x_to_give;
     y=y_to_give;
-    norm= Set_Norm;
+    norm= Set_Norm();
 }
 
 // ===========================================================================

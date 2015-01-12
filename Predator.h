@@ -6,8 +6,8 @@
 
 
 
-#ifndef __VECT_H__
-#define __VECT_H__
+#ifndef __PREDATOR_H__
+#define __PREDATOR_H__
 
 
 // ===========================================================================
@@ -15,13 +15,13 @@
 // ===========================================================================
 #include <cstdio>
 #include <cstdlib>
-#include <math.h>
+
 
 
 // ===========================================================================
 //                                Project Files
 // ===========================================================================
-
+#include "Agent.h"
 
 
 
@@ -34,7 +34,7 @@
 
 
 
-class Vect
+class Predator : public Agent
 {
   public :
     
@@ -45,33 +45,30 @@ class Vect
     // =======================================================================
     //                               Constructors
     // =======================================================================
-    Vect(void);
-    Vect(int x_to_give, int y_to_give);
-
+    Predator(void);
+    Predator(int perception, int index_to_give);
+    Predator(const Predator &model, int index_to_give);
     // =======================================================================
     //                                Destructor
     // =======================================================================
-    virtual ~Vect(void);
+    virtual ~Predator(void);
 
     // =======================================================================
     //                            Accessors: getters
     // =======================================================================
-    inline unsigned int Get_X (void) const;
-    inline unsigned int Get_Y (void) const;
-    inline double Get_Norm (void) const;
+
     // =======================================================================
     //                            Accessors: setters
     // =======================================================================
-    inline double Set_Norm (void);
+
     // =======================================================================
     //                                Operators
     // =======================================================================
-    
-    
+
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-
+    inline void  Print_Vect_Predator(void) const;
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -85,12 +82,12 @@ class Vect
     // =======================================================================
     //                            Forbidden Constructors
     // =======================================================================
-    /*Vect(void)
+    /*Predator(void)
     {
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
     };*/
-    Vect(const Vect &model)
+    Predator(const Predator &model)
     {
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
@@ -104,38 +101,17 @@ class Vect
     // =======================================================================
     //                             Protected Attributes
     // =======================================================================
-
-    unsigned int x;
-    unsigned int y;
-    double norm;
-
 };
 
 
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
-inline unsigned int Vect:: Get_X (void) const
-{
-    return x;
-} 
 
-inline unsigned int Vect:: Get_Y (void) const
-{
-    return y;
-}
-
-inline double Vect:: Get_Norm (void) const
-{
-    return norm;
-}
 // ===========================================================================
 //                              Setters' definitions
 // ===========================================================================
-inline double Vect:: Set_Norm (void)
-{
-    return sqrt( (x*x) + (y*y));
-}
+
 // ===========================================================================
 //                             Operators' definitions
 // ===========================================================================
@@ -143,7 +119,13 @@ inline double Vect:: Set_Norm (void)
 // ===========================================================================
 //                          Inline functions' definition
 // ===========================================================================
+inline void Predator:: Print_Vect_Predator(void) const
+{
+    Print_Vect();
 
+    printf("\n");
 
-#endif // __VECT_H__
+}
+
+#endif // __PREDATOR_H__
 

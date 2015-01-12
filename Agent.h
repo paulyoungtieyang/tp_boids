@@ -46,7 +46,7 @@ class Agent
     //                               Constructors
     // =======================================================================
     Agent(void);
-    Agent(int index_to_give);
+    Agent(int index_to_give, int perception, int contact);
 
     // =======================================================================
     //                                Destructor
@@ -56,12 +56,11 @@ class Agent
     // =======================================================================
     //                            Accessors: getters
     // =======================================================================
-    inline unsigned int Get_y1 (void) const; 
-    inline unsigned int Get_y2 (void) const; 
-    inline unsigned int Get_y3 (void) const; 
+    
 
-    inline unsigned int Get_Perception (void) const;
-    inline unsigned int Get_Contact (void) const;
+    inline int Get_Perception (void) const;
+    inline int Get_Contact (void) const;
+    inline int Get_Index (void) const;
 
     inline void Print_Vect(void) const;
 
@@ -76,13 +75,15 @@ class Agent
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    
+   
 /*Calcul de la prochaine position)*/
-    void next_pos_calc(double dt);
+//    void next_pos_calc(int dt);
 
 /*Calcul du nombre d'agents dans le rayon de perception */
-    int get_K (Agent* tab, int nb_agent);
+//    int get_K (Agent* tab, int nb_agent);
 
+/*Calcul de la vitesse v1 */
+//    Vect speed_1 (Agent* tab, int nb_agent);
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -117,12 +118,10 @@ class Agent
     // =======================================================================
     
     
-    unsigned int PERCEPTION;
-    unsigned int CONTACT;
+    int PERCEPTION;
+    int CONTACT;
     
-    unsigned int y1;
-    unsigned int y2;
-    unsigned int y3;
+    
 
     int index;
 
@@ -141,41 +140,38 @@ class Agent
 // ===========================================================================
 
 
-inline unsigned int Agent:: Get_y1 (void) const
-{
-    return y1;
-} 
 
-inline unsigned int Agent:: Get_y2 (void) const
-{
-    return y2;
-} 
 
-inline unsigned int Agent:: Get_y3 (void) const
-{
-    return y3;
-} 
-
-inline unsigned int Agent:: Get_Perception (void) const
+inline int Agent:: Get_Perception (void) const
 {
     return PERCEPTION;
 }
 
-inline unsigned int Agent:: Get_Contact (void) const
+inline int Agent:: Get_Contact (void) const
 {
     return CONTACT;
+}
+
+inline int Agent:: Get_Index (void) const
+{
+    return index;
 }
 
 inline void Agent:: Print_Vect(void) const
 {
     printf("x pos = %ld \n", pos->Get_X() );
     printf("y pos = %ld \n", pos->Get_Y() );
-    printf("norm pos = %lf \n", pos->Get_Norm() );
+    printf("norm pos = %lf \n\n", pos->Get_Norm() );
 
     printf("x speed = %ld \n", speed->Get_X() );
     printf("y speed = %ld \n", speed->Get_Y() );
-    printf("norm speed = %lf \n", speed->Get_Norm() );
+    printf("norm speed = %lf \n\n", speed->Get_Norm() );
+    
+    printf(" Index= %d\n", Get_Index());
+    printf(" PERCEPTION= %d\n", Get_Perception());
+    printf(" CONTACT= %d\n", Get_Contact());
 }
+
 
 // ===========================================================================
 //                              Setters' definitions
