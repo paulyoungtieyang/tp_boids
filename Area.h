@@ -21,8 +21,8 @@
 // ===========================================================================
 //                                Project Files
 // ===========================================================================
-
-
+#include "Predator.h"
+#include "Prey.h"
 
 // ===========================================================================
 //                              Class declarations
@@ -45,8 +45,8 @@ class Area
     //                               Constructors
     // =======================================================================
     Area(void);
-    Area(int H, int W, int Nb_A, int Nb_P, double step);
-
+    Area(int H, int W, int Nb_prey, int Nb_pred, double step);
+    Area(int H, int W, int Nb_prey, Prey* tab_prey, int Nb_pred, double step);
     // =======================================================================
     //                                Destructor
     // =======================================================================
@@ -56,6 +56,10 @@ class Area
     //                            Accessors: getters
     // =======================================================================
     inline double get_Step (void);
+    inline int get_Height (void);
+    inline int get_Width (void);
+    inline void Display(void);
+
     // =======================================================================
     //                            Accessors: setters
     // =======================================================================
@@ -67,7 +71,18 @@ class Area
     // =======================================================================
     //                              Public Methods
     // =======================================================================
+    int Get_K (int index);
+    int Get_K_Prime (int index);
 
+    Vect Speed_1 (int index);
+    Vect Speed_2 (int index);
+    Vect Speed_3 (int index);
+
+    Vect Speed_All (int index);
+    Vect Pos_All (int index);
+
+    void Update_Pos (int index);
+    void Update_Speed (int index);
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -100,14 +115,18 @@ class Area
     // =======================================================================
     //                             Protected Attributes
     // =======================================================================
-    unsigned int Width;
-    unsigned int Height;
+    int Width;
+    int Height;
 
     double TIME_STEP;
 
-    int Nb_Agent;
+    int Nb_Prey;
     int Nb_Predator;
 
+    Prey* tab_Prey;
+    Predator* tab_Predator;
+
+    
 
     
 
@@ -128,6 +147,22 @@ class Area
 inline double Area::get_Step (void) {
     return TIME_STEP;
 }
+
+inline int Area::get_Height (void) {
+    return Height;
+}
+
+inline int Area::get_Width (void) {
+    return Width;
+}
+
+inline void Area::Display(void) {
+    printf("Width = %d , Height = %d , TIME_STEP= %lf , Nb_Predator = %d, Nb_Prey = %d \n", Width, Height, TIME_STEP, Nb_Predator, Nb_Prey );
+}
+
+/*inline void Area::Get_Prey(void) {
+}*/
+
 // ===========================================================================
 //                          Inline functions' definition
 // ===========================================================================

@@ -36,12 +36,12 @@
 // ===========================================================================
 Vect::Vect(void)
 {
-	x=NULL;
-	y=NULL;
-	norm=NULL;
+	x=0;
+	y=0;
+	norm=0;
 }
 
-Vect::Vect(int x_to_give, int y_to_give)
+Vect::Vect(double x_to_give, double y_to_give)
 {
     x=x_to_give;
     y=y_to_give;

@@ -23,7 +23,6 @@
 //                                Project Files
 // ===========================================================================
 #include "Vect.h"
-#include "Area.h"
 
 // ===========================================================================
 //                              Class declarations
@@ -62,8 +61,16 @@ class Agent
     inline int Get_Contact (void) const;
     inline int Get_Index (void) const;
 
+
+
     inline void Print_Vect(void) const;
 
+
+    inline Vect Get_Pos (void);
+    inline Vect Get_Speed (void);
+
+    inline void Set_Pos (Vect new_pos,int index); 
+    inline void Set_Speed (Vect new_speed, int index); 
     // =======================================================================
     //                            Accessors: setters
     // =======================================================================
@@ -76,14 +83,7 @@ class Agent
     //                              Public Methods
     // =======================================================================
    
-/*Calcul de la prochaine position)*/
-//    void next_pos_calc(int dt);
 
-/*Calcul du nombre d'agents dans le rayon de perception */
-//    int get_K (Agent* tab, int nb_agent);
-
-/*Calcul de la vitesse v1 */
-//    Vect speed_1 (Agent* tab, int nb_agent);
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -128,10 +128,7 @@ class Agent
     Vect* pos;
     Vect* speed;
     
-    Vect* next_pos;
-    Vect* next_speed;
-
-  
+    
 };
 
 
@@ -157,15 +154,37 @@ inline int Agent:: Get_Index (void) const
     return index;
 }
 
+inline Vect Agent:: Get_Pos (void) 
+{
+    return *pos;
+}
+
+inline Vect Agent:: Get_Speed (void)
+{
+    return *speed;
+}
+
+inline void Agent:: Set_Pos (Vect new_pos,int index)
+{
+    printf("old pos =%lf %lf\n", pos->Get_X(), pos->Get_Y() );
+    *pos=new_pos;
+    printf("new pos=%lf\n", pos->Get_X(), pos->Get_Y()  );
+} 
+    
+
+inline void Agent:: Set_Speed (Vect new_speed, int index)
+{
+    printf("old speed =%lf %lf\n", speed->Get_X(), speed->Get_Y() );
+    *speed=new_speed;
+    printf("new speed=%lf\n", speed->Get_X(), speed->Get_Y()  );
+} 
+
+
 inline void Agent:: Print_Vect(void) const
 {
-    printf("x pos = %ld \n", pos->Get_X() );
-    printf("y pos = %ld \n", pos->Get_Y() );
-    printf("norm pos = %lf \n\n", pos->Get_Norm() );
-
-    printf("x speed = %ld \n", speed->Get_X() );
-    printf("y speed = %ld \n", speed->Get_Y() );
-    printf("norm speed = %lf \n\n", speed->Get_Norm() );
+    pos->Print_Vect();
+    speed->Print_Vect();
+    
     
     printf(" Index= %d\n", Get_Index());
     printf(" PERCEPTION= %d\n", Get_Perception());

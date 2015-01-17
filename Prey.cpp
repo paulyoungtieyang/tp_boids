@@ -44,7 +44,18 @@ Prey::Prey(void):Agent()
 Prey::Prey(int perception, int contact, int index_to_give, 
 	         double gam1, double gam2, double gam3): Agent(index_to_give, perception, contact)
 {
-	
+	double u = 640*((double)rand()/ (double)RAND_MAX);
+	double v = 480*((double)rand()/ (double)RAND_MAX);
+
+	Vect* new_pos = new Vect (u,v);
+	delete pos;
+	pos=new_pos;
+
+	Vect* new_speed = new Vect (0,0);
+	delete speed;
+	speed=new_speed;
+
+
 	y1= gam1;
 	y2= gam2;
 	y3= gam3;
@@ -63,11 +74,15 @@ Prey::Prey(const Prey &model, int index_to_give)
     PERCEPTION=model.PERCEPTION;
     CONTACT=model.CONTACT;
 
-    pos=model.pos;
+    double u = 640*((double)rand()/ (double)RAND_MAX);
+	double v = 480*((double)rand()/ (double)RAND_MAX);
+
+	Vect* new_pos = new Vect (u,v);
+	delete pos;
+	pos=new_pos;
+
     speed=model.speed;
 
-    next_pos=model.next_pos;
-    next_speed=model.next_speed;
 }
 
 

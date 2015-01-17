@@ -53,8 +53,6 @@ Predator::Predator(const Predator &model, int index_to_give)
     pos=model.pos;
     speed=model.speed;
 
-    next_pos=model.next_pos;
-    next_speed=model.next_speed;
 }
 
 // ===========================================================================

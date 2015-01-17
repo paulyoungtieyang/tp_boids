@@ -119,7 +119,7 @@ class Predator : public Agent
 // ===========================================================================
 //                          Inline functions' definition
 // ===========================================================================
-inline void Predator:: Print_Vect_Predator(void) const
+inline void Predator::Print_Vect_Predator(void) const
 {
     Print_Vect();
 

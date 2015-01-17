@@ -46,8 +46,8 @@ class Vect
     //                               Constructors
     // =======================================================================
     Vect(void);
-    Vect(int x_to_give, int y_to_give);
-
+    Vect(double x_to_give, double y_to_give);
+    inline Vect(const Vect &model);
     // =======================================================================
     //                                Destructor
     // =======================================================================
@@ -56,8 +56,8 @@ class Vect
     // =======================================================================
     //                            Accessors: getters
     // =======================================================================
-    inline unsigned int Get_X (void) const;
-    inline unsigned int Get_Y (void) const;
+    inline double Get_X (void) const;
+    inline double Get_Y (void) const;
     inline double Get_Norm (void) const;
     // =======================================================================
     //                            Accessors: setters
@@ -66,12 +66,16 @@ class Vect
     // =======================================================================
     //                                Operators
     // =======================================================================
-    
+    friend inline Vect operator+ (Vect v1, Vect v2);
+    friend inline Vect operator- (Vect v1, Vect v2);
+    inline Vect operator/ (int v);
+    inline Vect operator* (int v);
+
     
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-
+    inline void Print_Vect(void);
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -90,11 +94,7 @@ class Vect
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
     };*/
-    Vect(const Vect &model)
-    {
-      printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
-      exit(EXIT_FAILURE);
-    };
+    
 
 
     // =======================================================================
@@ -105,8 +105,8 @@ class Vect
     //                             Protected Attributes
     // =======================================================================
 
-    unsigned int x;
-    unsigned int y;
+    double x;
+    double y;
     double norm;
 
 };
@@ -115,12 +115,12 @@ class Vect
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
-inline unsigned int Vect:: Get_X (void) const
+inline double Vect:: Get_X (void) const
 {
     return x;
 } 
 
-inline unsigned int Vect:: Get_Y (void) const
+inline double Vect:: Get_Y (void) const
 {
     return y;
 }
@@ -134,12 +134,58 @@ inline double Vect:: Get_Norm (void) const
 // ===========================================================================
 inline double Vect:: Set_Norm (void)
 {
-    return sqrt( (x*x) + (y*y));
+    return sqrt((x*x) + (y*y));
 }
 // ===========================================================================
 //                             Operators' definitions
 // ===========================================================================
+inline Vect operator+(Vect v1, Vect v2)
+{
+  double a = v1.Get_X() + v2.Get_X();
+  double b = v1.Get_Y() + v2.Get_Y();
+  Vect res(a,b);
+  return res;
+  
+}
 
+inline Vect operator-(Vect v1, Vect v2)
+{
+  double a = v1.Get_X() - v2.Get_X();
+  double b = v1.Get_Y() - v2.Get_Y();
+  Vect res(a,b);
+  return res;
+  
+}
+
+inline Vect Vect::operator/ (int v)
+{
+  double a = x/v;
+  double b = y/v;
+  Vect res (a,b);
+  return res;
+  
+}
+
+inline Vect Vect::operator* (int v)
+{
+  double a = x*v;
+  double b = y*v;
+  Vect res(a,b);
+  return res;
+  
+}
+
+inline void Vect::Print_Vect(void)
+{
+  printf("\n x= %lf, y=%lf, norm=%lf \n", x,y,norm);
+}
+
+inline Vect::Vect(const Vect &model)
+{
+  x=model.x;
+  y=model.y;
+  norm=model.norm;
+}
 // ===========================================================================
 //                          Inline functions' definition
 // ===========================================================================
