@@ -98,14 +98,16 @@ int main(int argc, char* argv[])
     //test.Print_Vect();
     //my_prey_i->Print_Vect_Prey(); 
   }
-  
 
-   
   Area* my_environnement = new Area (600,480, nb_proies, my_tab,0,0.1);
+  
+  //my_environnement->Update_Pos(1);
+
   
   for(int i=0; i<nb_proies;i++)
   {
-    my_environnement->Update_Speed(i);
+
+    //my_environnement->Update_Speed(i);
     my_environnement->Update_Pos(i);
 
     

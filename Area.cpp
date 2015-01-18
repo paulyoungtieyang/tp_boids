@@ -219,7 +219,7 @@ Vect* Area::Speed_All (int index)
    double y3= my_prey->Get_y3();
 
    *ret= my_prey->Get_Speed() + ((Speed_1(index)*y1) + (Speed_2(index)*y2) + (Speed_3(index)*y3))*TIME_STEP;
-   delete my_prey;
+   //delete my_prey;
    
    return ret;
 }
@@ -231,7 +231,7 @@ Vect* Area::Pos_All (int index)
    Vect* ret = new Vect (0,0);
 
    *ret= my_prey->Get_Pos() + ((my_prey->Get_Speed())*TIME_STEP); 
-   delete my_prey;
+   //delete my_prey;
 
    return ret; 
 }
