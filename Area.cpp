@@ -209,7 +209,7 @@ Vect Area::Speed_3 (int index)
 }
 
 
-Vect Area::Speed_All (int index)
+Vect* Area::Speed_All (int index)
 {
    Prey* my_prey = new Prey(tab_Prey[index],index);
    Vect* ret = new Vect (0,0);
@@ -219,29 +219,34 @@ Vect Area::Speed_All (int index)
    double y3= my_prey->Get_y3();
 
    *ret= my_prey->Get_Speed() + ((Speed_1(index)*y1) + (Speed_2(index)*y2) + (Speed_3(index)*y3))*TIME_STEP;
+   delete my_prey;
    
-   return *ret;
+   return ret;
 }
 
 
-Vect Area::Pos_All (int index)
+Vect* Area::Pos_All (int index)
 {
    Prey* my_prey = new Prey(tab_Prey[index],index);
    Vect* ret = new Vect (0,0);
 
    *ret= my_prey->Get_Pos() + ((my_prey->Get_Speed())*TIME_STEP); 
-   return *ret; 
+   delete my_prey;
+
+   return ret; 
 }
 
 
 void Area::Update_Pos (int index)
 {
-  tab_Prey[index].Set_Pos(Pos_All(index),index);
+  Vect* New_pos= Pos_All(index);
+  tab_Prey[index].Set_Pos(*New_pos);
 }
 
 void Area::Update_Speed (int index)
 {
-  tab_Prey[index].Set_Speed(Speed_All(index),index);
+  Vect* New_speed= Speed_All(index);
+  tab_Prey[index].Set_Speed(*New_speed);
 }
 
 

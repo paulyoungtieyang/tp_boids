@@ -69,8 +69,8 @@ class Agent
     inline Vect Get_Pos (void);
     inline Vect Get_Speed (void);
 
-    inline void Set_Pos (Vect new_pos,int index); 
-    inline void Set_Speed (Vect new_speed, int index); 
+    inline void Set_Pos (Vect new_pos); 
+    inline void Set_Speed (Vect new_speed); 
     // =======================================================================
     //                            Accessors: setters
     // =======================================================================
@@ -164,26 +164,31 @@ inline Vect Agent:: Get_Speed (void)
     return *speed;
 }
 
-inline void Agent:: Set_Pos (Vect new_pos,int index)
+inline void Agent:: Set_Pos (Vect new_pos)
 {
+    
+
+
     printf("old pos =%lf %lf\n", pos->Get_X(), pos->Get_Y() );
-    *pos=new_pos;
-    printf("new pos=%lf\n", pos->Get_X(), pos->Get_Y()  );
+    delete pos;
+    *pos = new_pos;
+    printf("new pos=%lf %lf\n", pos->Get_X(), pos->Get_Y()  );
 } 
     
 
-inline void Agent:: Set_Speed (Vect new_speed, int index)
+inline void Agent:: Set_Speed (Vect new_speed)
 {
     printf("old speed =%lf %lf\n", speed->Get_X(), speed->Get_Y() );
+    delete speed;
     *speed=new_speed;
-    printf("new speed=%lf\n", speed->Get_X(), speed->Get_Y()  );
+    printf("new speed=%lf %lf\n", speed->Get_X(), speed->Get_Y()  );
 } 
 
 
 inline void Agent:: Print_Vect(void) const
 {
-    pos->Print_Vect();
-    speed->Print_Vect();
+    pos->Print_Vector();
+    speed->Print_Vector();
     
     
     printf(" Index= %d\n", Get_Index());

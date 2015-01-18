@@ -75,7 +75,7 @@ class Vect
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    inline void Print_Vect(void);
+    inline void Print_Vector(void);
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -143,8 +143,8 @@ inline Vect operator+(Vect v1, Vect v2)
 {
   double a = v1.Get_X() + v2.Get_X();
   double b = v1.Get_Y() + v2.Get_Y();
-  Vect res(a,b);
-  return res;
+  Vect* res = new Vect (a,b);
+  return *res;
   
 }
 
@@ -152,8 +152,8 @@ inline Vect operator-(Vect v1, Vect v2)
 {
   double a = v1.Get_X() - v2.Get_X();
   double b = v1.Get_Y() - v2.Get_Y();
-  Vect res(a,b);
-  return res;
+  Vect* res= new Vect (a,b);
+  return *res;
   
 }
 
@@ -161,8 +161,8 @@ inline Vect Vect::operator/ (int v)
 {
   double a = x/v;
   double b = y/v;
-  Vect res (a,b);
-  return res;
+  Vect* res = new Vect (a,b);
+  return *res;
   
 }
 
@@ -170,12 +170,12 @@ inline Vect Vect::operator* (int v)
 {
   double a = x*v;
   double b = y*v;
-  Vect res(a,b);
-  return res;
+  Vect* res= new Vect(a,b);
+  return *res;
   
 }
 
-inline void Vect::Print_Vect(void)
+inline void Vect::Print_Vector(void)
 {
   printf("\n x= %lf, y=%lf, norm=%lf \n", x,y,norm);
 }

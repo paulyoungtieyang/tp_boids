@@ -47,12 +47,12 @@ int main(int argc, char* argv[])
 
   /*Vect* tmp = new Vect (5,12);
   double  a= tmp->Get_Y();
-  printf("%lf\n",a );*/
+  printf("%lf\n",a );
 
 
-  /*Agent* Agent_1 = new Agent();
+  Agent* Agent_1 = new Agent();
   printf("\nAgent 1\n");
-  Agent_1->Print_Vect();*/
+  Agent_1->Set_Pos(*tmp,1);*/
 
   /*Agent* Agent_2 = new Agent(50,50,50);
   printf("\nAgent 2\n");
@@ -111,9 +111,16 @@ int main(int argc, char* argv[])
     
   }
 
+
   /*double tmp =my_tab[1].Get_Pos().Get_X()-2;
   printf("x =%lf \n", tmp );*/
 
+ /* Prey* prey_1 = new Prey(3,3,3,3,3,3);
+  Prey* tab= new Prey[1];
+  tab[1]=*prey_1;
+  Area* my_environnement = new Area (600,480, 1, tab,0,0.1);
+  tab[1].Print_Vect();
+  my_environnement->Update_Pos(1);*/
 
 
 
@@ -124,7 +131,7 @@ int main(int argc, char* argv[])
 
 
 
-
+/*
 
   bwindow win(640,480);
     printf("%d\n",win.init());
@@ -154,13 +161,13 @@ int main(int argc, char* argv[])
     printf("expose\n"); break;
       case BCONFIGURE:
     printf("configure\n"); break;
-  }
+  }*/
   /*win.draw_point(100,100,0xFF00);
   win.draw_line(100,100,200,200,0xFF0000);
   win.draw_text(10,10,0x0,"Hello World",strlen("Hello World"));
   win.draw_square(200,200,220,220,0xFF00);
   win.draw_fsquare(400,400,440,440,0xFF00);*/
-    }
+ //   }
 
 
   return 0;

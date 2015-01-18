@@ -78,8 +78,8 @@ class Area
     Vect Speed_2 (int index);
     Vect Speed_3 (int index);
 
-    Vect Speed_All (int index);
-    Vect Pos_All (int index);
+    Vect* Speed_All (int index);
+    Vect* Pos_All (int index);
 
     void Update_Pos (int index);
     void Update_Speed (int index);
