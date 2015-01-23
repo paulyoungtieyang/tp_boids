@@ -23,6 +23,7 @@
 // ===========================================================================
 #include "Predator.h"
 #include "Prey.h"
+#include "Obstacle.h"
 
 // ===========================================================================
 //                              Class declarations
@@ -45,8 +46,8 @@ class Area
     //                               Constructors
     // =======================================================================
     Area(void);
-    Area(int H, int W, int Nb_prey, int Nb_pred, double step);
-    Area(int H, int W, int Nb_prey, Prey* tab_prey, int Nb_pred, double step);
+    Area(int Nb_prey, int Nb_pred, int Nb_obstacle, double step);
+    
     // =======================================================================
     //                                Destructor
     // =======================================================================
@@ -60,6 +61,9 @@ class Area
     inline int get_Width (void);
     inline void Display(void);
 
+    inline Prey* Get_Tab_Prey(void) const;
+    inline Obstacle* Get_Tab_Obstacle(void) const;
+    inline Predator* Get_Tab_Predator(void) const;
     // =======================================================================
     //                            Accessors: setters
     // =======================================================================
@@ -71,18 +75,18 @@ class Area
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    int Get_K (int index);
-    int Get_K_Prime (int index);
-
-    Vect Speed_1 (int index);
-    Vect Speed_2 (int index);
-    Vect Speed_3 (int index);
-
-    Vect* Speed_All (int index);
-    Vect* Pos_All (int index);
+    double Get_K (int index);
+    double Get_K_Prime (int index);
 
     void Update_Pos (int index);
     void Update_Speed (int index);
+
+    void Speed_All(void);
+    void Pos_All(void);
+    void Update(void);
+    
+    void Move_Pred(void);
+  
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -122,12 +126,17 @@ class Area
 
     int Nb_Prey;
     int Nb_Predator;
+    int Nb_Obstacle;
 
     Prey* tab_Prey;
     Predator* tab_Predator;
+    Obstacle* tab_Obstacle;
 
+    //Obstacle* borders;
     
-
+    static const double y1;
+    static const double y2;
+    static const double y3;
     
 
 };
@@ -160,8 +169,22 @@ inline void Area::Display(void) {
     printf("Width = %d , Height = %d , TIME_STEP= %lf , Nb_Predator = %d, Nb_Prey = %d \n", Width, Height, TIME_STEP, Nb_Predator, Nb_Prey );
 }
 
-/*inline void Area::Get_Prey(void) {
-}*/
+inline Prey* Area::Get_Tab_Prey(void) const
+{
+    return tab_Prey;
+}
+
+inline Obstacle* Area::Get_Tab_Obstacle(void) const
+{
+
+    return tab_Obstacle;
+}
+
+inline Predator* Area::Get_Tab_Predator(void) const
+{
+    return tab_Predator;
+}
+
 
 // ===========================================================================
 //                          Inline functions' definition

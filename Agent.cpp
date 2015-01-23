@@ -30,30 +30,23 @@
 // ===========================================================================
 //                         Definition of static attributes
 // ===========================================================================
-
+const int Agent:: H=480;
+const int Agent::W=640;
 // ===========================================================================
 //                                  Constructors
 // ===========================================================================
-Agent::Agent(void)
+Agent::Agent(void) : pos(0,0), speed(0,0)
 {
-	PERCEPTION = 0;
-    CONTACT = 0;
-    index =0;
-
-	pos= new Vect(0,0);
-	speed= new Vect(0,0);
-
+	PERCEPTION = 40;
+    CONTACT = 10;
+    
 }
 
-Agent::Agent(int index_to_give, int perception, int contact) {
+Agent::Agent(double perception, double contact) : pos(0,0), speed(0,0)
+{
 	
     PERCEPTION = perception ;
     CONTACT = contact;
-
-    index=index_to_give;
-
-	pos= new Vect(0,0);
-	speed= new Vect(0,0);
 
 }
 
@@ -62,8 +55,7 @@ Agent::Agent(int index_to_give, int perception, int contact) {
 // ===========================================================================
 Agent::~Agent(void)
 {
-	delete pos;
-	delete speed;
+	
 }
 
 // ===========================================================================

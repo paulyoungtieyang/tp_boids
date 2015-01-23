@@ -16,14 +16,14 @@
 // ===========================================================================
 //                                 Project Files
 // ===========================================================================
-#include "Predator.h"
+#include "Obstacle.h"
 
 
 
 
 //############################################################################
 //                                                                           #
-//                           Class Predator                            #
+//                           Class Obstacle                            #
 //                                                                           #
 //############################################################################
 
@@ -34,29 +34,25 @@
 // ===========================================================================
 //                                  Constructors
 // ===========================================================================
-Predator::Predator(void)
+Obstacle::Obstacle(void)
 {
-	double u = 640*((double)rand()/ (double)RAND_MAX);
-	double v = 480*((double)rand()/ (double)RAND_MAX);
+	double u = 600*((double)rand()/ (double)RAND_MAX);
+	double v = 440*((double)rand()/ (double)RAND_MAX);
     Vect p(u,v);
 
-    pos = p;
+	pos = p;
 	
-	speed = Vect (0,0);
 }
 
-
-Predator::Predator(const Predator &model)
-{
-	pos=model.pos;
-	speed=model.speed;
-    
-}
+Obstacle::Obstacle(const Obstacle &model)
+    {
+     pos=model.pos;
+    }
 
 // ===========================================================================
 //                                  Destructor
 // ===========================================================================
-Predator::~Predator(void)
+Obstacle::~Obstacle(void)
 {
 }
 

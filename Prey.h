@@ -46,8 +46,9 @@ class Prey : public Agent
     //                               Constructors
     // =======================================================================
     Prey(void);
-    Prey(int perception, int contact, int index_to_give, double gam1, double gam2, double gam3);
-    Prey(const Prey &model, int index_to_give);
+    Prey(double perception, double contact);
+    Prey(const Prey &model);
+    
     // =======================================================================
     //                                Destructor
     // =======================================================================
@@ -68,12 +69,10 @@ class Prey : public Agent
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    /* les y sont les gammas */
-    inline double Get_y1 (void) const; 
-    inline double Get_y2 (void) const; 
-    inline double Get_y3 (void) const; 
+    
+    
 
-    inline void Print_Vect_Prey(void) const;
+    inline void Print_Vect_Prey(void) ;
 
     // =======================================================================
     //                             Public Attributes
@@ -88,11 +87,7 @@ class Prey : public Agent
     // =======================================================================
     //                            Forbidden Constructors
     // =======================================================================
-    Prey(const Prey &model)
-    {
-      printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
-      exit(EXIT_FAILURE);
-    };
+    
 
     // =======================================================================
     //                              Protected Methods
@@ -102,9 +97,7 @@ class Prey : public Agent
     //                             Protected Attributes
     // =======================================================================
     /*Les gammas*/
-    double y1;
-    double y2;
-    double y3;
+    
 
 };
 
@@ -112,30 +105,14 @@ class Prey : public Agent
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
-inline double Prey:: Get_y1 (void) const
-{
-    return y1;
-} 
 
-inline double Prey:: Get_y2 (void) const
-{
-    return y2;
-} 
 
-inline double Prey:: Get_y3 (void) const
-{
-    return y3;
-} 
-
-inline void Prey:: Print_Vect_Prey(void) const
+inline void Prey:: Print_Vect_Prey(void) 
 {
     Print_Vect();
 
-    printf("\n");
-
-    printf("y1= %lf\n", Get_y1());
-    printf("y2= %lf\n", Get_y2());
-    printf("y3= %lf\n", Get_y3());
+    
+    
 }
 // ===========================================================================
 //                              Setters' definitions

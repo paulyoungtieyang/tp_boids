@@ -45,7 +45,7 @@ class Agent
     //                               Constructors
     // =======================================================================
     Agent(void);
-    Agent(int index_to_give, int perception, int contact);
+    Agent(double perception, double contact);
 
     // =======================================================================
     //                                Destructor
@@ -57,13 +57,12 @@ class Agent
     // =======================================================================
     
 
-    inline int Get_Perception (void) const;
-    inline int Get_Contact (void) const;
-    inline int Get_Index (void) const;
+    inline double Get_Perception (void) const;
+    inline double Get_Contact (void) const;
+    
 
 
-
-    inline void Print_Vect(void) const;
+    inline void Print_Vect(void) ;
 
 
     inline Vect Get_Pos (void);
@@ -118,15 +117,16 @@ class Agent
     // =======================================================================
     
     
-    int PERCEPTION;
-    int CONTACT;
+    double PERCEPTION;
+    double CONTACT;
     
     
 
-    int index;
+    Vect pos;
+    Vect speed;
 
-    Vect* pos;
-    Vect* speed;
+    static const int H;
+    static const int W;
     
     
 };
@@ -139,59 +139,48 @@ class Agent
 
 
 
-inline int Agent:: Get_Perception (void) const
+inline double Agent:: Get_Perception (void) const
 {
     return PERCEPTION;
 }
 
-inline int Agent:: Get_Contact (void) const
+inline double Agent:: Get_Contact (void) const
 {
     return CONTACT;
 }
 
-inline int Agent:: Get_Index (void) const
-{
-    return index;
-}
-
 inline Vect Agent:: Get_Pos (void) 
 {
-    return *pos;
+    return pos;
 }
 
 inline Vect Agent:: Get_Speed (void)
 {
-    return *speed;
+    return speed;
 }
 
 inline void Agent:: Set_Pos (Vect new_pos)
 {
     
-
-
-    printf("old pos =%lf %lf\n", pos->Get_X(), pos->Get_Y() );
-    delete pos;
-    *pos = new_pos;
-    printf("new pos=%lf %lf\n", pos->Get_X(), pos->Get_Y()  );
+    pos = new_pos;
+    
 } 
     
 
 inline void Agent:: Set_Speed (Vect new_speed)
 {
-    printf("old speed =%lf %lf\n", speed->Get_X(), speed->Get_Y() );
-    delete speed;
-    *speed=new_speed;
-    printf("new speed=%lf %lf\n", speed->Get_X(), speed->Get_Y()  );
+    
+    speed = new_speed;
+    
 } 
 
 
-inline void Agent:: Print_Vect(void) const
+inline void Agent:: Print_Vect(void) 
 {
-    pos->Print_Vector();
-    speed->Print_Vector();
+    pos.Print_Vector();
+    speed.Print_Vector();
     
     
-    printf(" Index= %d\n", Get_Index());
     printf(" PERCEPTION= %d\n", Get_Perception());
     printf(" CONTACT= %d\n", Get_Contact());
 }

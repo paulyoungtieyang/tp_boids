@@ -1,3 +1,4 @@
+
 //****************************************************************************
 //
 //
@@ -63,14 +64,16 @@ class Vect
     //                            Accessors: setters
     // =======================================================================
     inline double Set_Norm (void);
+    inline void Set_X (double x_to_give);
+    inline void Set_Y (double y_to_give);
     // =======================================================================
     //                                Operators
     // =======================================================================
     friend inline Vect operator+ (Vect v1, Vect v2);
     friend inline Vect operator- (Vect v1, Vect v2);
-    inline Vect operator/ (int v);
-    inline Vect operator* (int v);
-
+    inline Vect operator/ (double v);
+    inline Vect operator* (double v);
+    
     
     // =======================================================================
     //                              Public Methods
@@ -134,6 +137,7 @@ inline double Vect:: Get_Norm (void) const
 // ===========================================================================
 inline double Vect:: Set_Norm (void)
 {
+    
     return sqrt((x*x) + (y*y));
 }
 // ===========================================================================
@@ -143,8 +147,8 @@ inline Vect operator+(Vect v1, Vect v2)
 {
   double a = v1.Get_X() + v2.Get_X();
   double b = v1.Get_Y() + v2.Get_Y();
-  Vect* res = new Vect (a,b);
-  return *res;
+  Vect res (a,b);
+  return res;
   
 }
 
@@ -152,26 +156,26 @@ inline Vect operator-(Vect v1, Vect v2)
 {
   double a = v1.Get_X() - v2.Get_X();
   double b = v1.Get_Y() - v2.Get_Y();
-  Vect* res= new Vect (a,b);
-  return *res;
+  Vect res (a,b);
+  return res;
   
 }
 
-inline Vect Vect::operator/ (int v)
+inline Vect Vect::operator/ (double v)
 {
   double a = x/v;
   double b = y/v;
-  Vect* res = new Vect (a,b);
-  return *res;
+  Vect res (a,b);
+  return res;
   
 }
 
-inline Vect Vect::operator* (int v)
+inline Vect Vect::operator* (double v)
 {
   double a = x*v;
   double b = y*v;
-  Vect* res= new Vect(a,b);
-  return *res;
+  Vect res (a,b);
+  return res;
   
 }
 
@@ -185,6 +189,16 @@ inline Vect::Vect(const Vect &model)
   x=model.x;
   y=model.y;
   norm=model.norm;
+}
+
+inline void Vect::Set_X (double x_to_give)
+{
+  x= x+x_to_give;
+}
+
+inline void Vect::Set_Y (double y_to_give)
+{
+  y=y+y_to_give;
 }
 // ===========================================================================
 //                          Inline functions' definition

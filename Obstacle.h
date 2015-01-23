@@ -6,8 +6,8 @@
 
 
 
-#ifndef __PREDATOR_H__
-#define __PREDATOR_H__
+#ifndef __OBSTACLE_H__
+#define __OBSTACLE_H__
 
 
 // ===========================================================================
@@ -34,7 +34,7 @@
 
 
 
-class Predator 
+class Obstacle 
 {
   public :
     
@@ -45,26 +45,22 @@ class Predator
     // =======================================================================
     //                               Constructors
     // =======================================================================
-    Predator(void);
-    Predator(int perception);
-    Predator(const Predator &model);
+    Obstacle(void);
+    Obstacle(const Obstacle &model);
+    
     // =======================================================================
     //                                Destructor
     // =======================================================================
-    virtual ~Predator(void);
+    virtual ~Obstacle(void);
 
     // =======================================================================
     //                            Accessors: getters
     // =======================================================================
     inline Vect Get_Pos(void);
-
     // =======================================================================
     //                            Accessors: setters
     // =======================================================================
-    inline void Set_Pos(Vect pos_to_give);
 
-    inline void Set_Pos_Random(double u);
-    inline void Set_Speed(Vect speed_to_give);
     // =======================================================================
     //                                Operators
     // =======================================================================
@@ -72,7 +68,7 @@ class Predator
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-    inline void  Print_Vect_Predator(void) ;
+
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
@@ -86,7 +82,7 @@ class Predator
     // =======================================================================
     //                            Forbidden Constructors
     // =======================================================================
-    /*Predator(void)
+    /*Obstacle(void)
     {
       printf("%s:%d: error: call to forbidden constructor.\n", __FILE__, __LINE__);
       exit(EXIT_FAILURE);
@@ -101,57 +97,21 @@ class Predator
     // =======================================================================
     //                             Protected Attributes
     // =======================================================================
-      Vect pos;
-      Vect speed;
+    Vect pos;
+    
 };
 
 
 // ===========================================================================
 //                              Getters' definitions
 // ===========================================================================
-
-// ===========================================================================
-//                              Setters' definitions
-// ===========================================================================
-inline void Predator::Set_Pos_Random(double u)
-{
-  if(u<0.25)
-  {
-    Vect p(1,0);
-    pos=pos+p;
-  }
-  else if(u<0.5 && u>0.25) 
-  {
-    Vect p(0,1);
-    pos=pos+p;
-  }
-  else if(u>0.5 && u<0.75)
-  {
-    Vect p(-1,0);
-    pos=pos+p;
-  }
-  else
-  {
-    Vect p(0,-1);
-    pos=pos+p;
-  }
-}
-
-inline void Predator::Set_Pos(Vect pos_to_give)
-{
-  pos=pos_to_give;
-}
-
-
-inline void Predator::Set_Speed(Vect speed_to_give)
-{
-  speed= speed_to_give;
-}
-
-inline Vect Predator::Get_Pos(void)
+inline Vect Obstacle::Get_Pos(void)
 {
     return pos;
 }
+// ===========================================================================
+//                              Setters' definitions
+// ===========================================================================
 
 // ===========================================================================
 //                             Operators' definitions
@@ -160,12 +120,7 @@ inline Vect Predator::Get_Pos(void)
 // ===========================================================================
 //                          Inline functions' definition
 // ===========================================================================
-inline void Predator::Print_Vect_Predator(void) 
-{
-    
-    printf("\n");
 
-}
 
-#endif // __PREDATOR_H__
+#endif // __OBSTACLE_H__
 

@@ -36,35 +36,33 @@
 // ===========================================================================
 Prey::Prey(void):Agent()
 {
-	y1=0;
-	y2=0;
-	y3=0;
+	
+	double u = W*((double)rand()/ (double)RAND_MAX);
+	double v = H*((double)rand()/ (double)RAND_MAX);
+    Vect p(u,v);
+
+    pos = p;
+	//printf(" Test : Valeurs de X:%ld Y:%lf \n ",test.Get_X(),test.Get_Y());
+	speed = Vect (0,0);
+
+
 }
 
-Prey::Prey(int perception, int contact, int index_to_give, 
-	         double gam1, double gam2, double gam3): Agent(index_to_give, perception, contact)
+Prey::Prey(double perception, double contact): Agent(perception, contact)
 {
-	double u = 640*((double)rand()/ (double)RAND_MAX);
-	double v = 480*((double)rand()/ (double)RAND_MAX);
+	double u = W*((double)rand()/ (double)RAND_MAX);
+	double v = H*((double)rand()/ (double)RAND_MAX);
+    Vect p(u,v);
 
-	Vect* new_pos = new Vect (u,v);
-	delete pos;
-	pos=new_pos;
+	pos = p;
+	speed = Vect (0,0);
 
-	Vect* new_speed = new Vect (0,0);
-	delete speed;
-	speed=new_speed;
-
-
-	y1= gam1;
-	y2= gam2;
-	y3= gam3;
 }
 
 // ===========================================================================
 //                                  Destructor
 // ===========================================================================
-Prey::Prey(const Prey &model, int index_to_give)
+/*Prey::Prey(const Prey &model, int index_to_give)
 {
 	y1=model.y1;
 	y2=model.y2;
@@ -74,15 +72,20 @@ Prey::Prey(const Prey &model, int index_to_give)
     PERCEPTION=model.PERCEPTION;
     CONTACT=model.CONTACT;
 
-    double u = 640*((double)rand()/ (double)RAND_MAX);
-	double v = 480*((double)rand()/ (double)RAND_MAX);
+   	pos= Vect(model.pos);
 
-	Vect* new_pos = new Vect (u,v);
-	delete pos;
-	pos=new_pos;
+    speed= Vect(model.speed);
 
-    speed=model.speed;
+}*/
 
+Prey::Prey(const Prey &model)
+{
+	PERCEPTION=model.PERCEPTION;
+    CONTACT=model.CONTACT;
+
+	pos= Vect(model.pos);
+
+    speed= Vect(model.speed);
 }
 
 

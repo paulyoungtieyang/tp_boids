@@ -23,6 +23,7 @@
 #include "Predator.h"
 #include "Area.h"
 #include "bwindow.h"
+#include "Obstacle.h"
 // ===========================================================================
 //                               Static Attributes
 // ===========================================================================
@@ -43,134 +44,91 @@
 // ===========================================================================
 int main(int argc, char* argv[])
 {
-  //printf("Hello World !\n");
+ 
+  printf("Lancement de simulation\n");
 
-  /*Vect* tmp = new Vect (5,12);
-  double  a= tmp->Get_Y();
-  printf("%lf\n",a );
+  int nb_proies =8;
+  int nb_obstacles = 15;
+  int nb_predateurs=1;
 
 
-  Agent* Agent_1 = new Agent();
-  printf("\nAgent 1\n");
-  Agent_1->Set_Pos(*tmp,1);*/
 
-  /*Agent* Agent_2 = new Agent(50,50,50);
-  printf("\nAgent 2\n");
-  Agent_2->Print_Vect();*/
-
-  /*Prey* Prey_1= new Prey();
-  printf("\nProie 1\n");
-  Prey_1->Print_Vect_Prey();
-
-  Prey* Prey_2 = new Prey(12,12,12,12,12,12);
-  printf("\nProie 2\n");
-  Prey_2->Print_Vect_Prey();
-
-  Predator* Predator_1= new Predator (20,20);
-  printf("\nPredator 1\n");
-  Predator_1->Print_Vect_Predator();
+  Area my_environnement(nb_proies,nb_predateurs,nb_obstacles,0.06);
+  Prey* my_tab = my_environnement.Get_Tab_Prey();
+  Obstacle* my_tab_obstacles = my_environnement.Get_Tab_Obstacle();
+  Predator* my_tab_predateur= my_environnement.Get_Tab_Predator();
   
-  Prey* Prey_3= new Prey(*Prey_2, 5);
-  printf("\nProie 3\n");
-  Prey_3->Print_Vect_Prey();
-
-  Predator* Predator_2= new Predator (*Predator_1,1);
-  printf("\nPredator 2\n");
-  Predator_2->Print_Vect_Predator();*/
-
-  //Area* my_Area= new Area();
-  /*Area* Environnement = new Area (5,5,5,5,5);
-  Environnement->Display();
-
-  Vect* my_vect = new Vect(2,2);
-  my_vect->Print_Vect();*/
-
-  int nb_proies = 5;
-
-  Prey* my_tab = new Prey [nb_proies];
-  Prey* Sample = new Prey (1,1,1,1,1,1);
-  
-  for(int i=0; i<nb_proies; i++)
-  {
-    Prey* my_prey_i = new Prey (*Sample, i+1);
-    my_tab[i]= *my_prey_i;
-    //Vect test = my_tab[i].Get_Speed();
-    //test.Print_Vect();
-    //my_prey_i->Print_Vect_Prey(); 
-  }
-
-  Area* my_environnement = new Area (600,480, nb_proies, my_tab,0,0.1);
-  
-  //my_environnement->Update_Pos(1);
-
-  
-  for(int i=0; i<nb_proies;i++)
-  {
-
-    //my_environnement->Update_Speed(i);
-    my_environnement->Update_Pos(i);
-
-    
-  }
-
-
-  /*double tmp =my_tab[1].Get_Pos().Get_X()-2;
-  printf("x =%lf \n", tmp );*/
-
- /* Prey* prey_1 = new Prey(3,3,3,3,3,3);
-  Prey* tab= new Prey[1];
-  tab[1]=*prey_1;
-  Area* my_environnement = new Area (600,480, 1, tab,0,0.1);
-  tab[1].Print_Vect();
-  my_environnement->Update_Pos(1);*/
-
-
-
-
-
-
-
-
-
-
-/*
-
+ 
   bwindow win(640,480);
     printf("%d\n",win.init());
     win.map();
     for(;;)
     {
+  
+
+
+
+
   int ev = win.parse_event();
   switch(ev)
   {
       case BKPRESS :
+    
     printf("keypressed\n"); 
     printf("key : %s\n",win.get_lastkey());
-    
-    win.draw_fsquare(0,0,640,480,0xFF00);
-    for(int i =0; i<nb_proies;i++){
-     my_environnement->Update_Speed(i);
-     my_environnement->Update_Pos(i);
-     win.draw_fsquare(my_tab[i].Get_Pos().Get_X()-2, my_tab[i].Get_Pos().Get_Y()-2,my_tab[i].Get_Pos().Get_X()+2, my_tab[i].Get_Pos().Get_Y()+2, 0xFF0000);
-    }
-     
-
-
     break;
+    
+
       case BBPRESS:
     printf("buttonpressed\n"); break;
       case BEXPOSE:
     printf("expose\n"); break;
       case BCONFIGURE:
     printf("configure\n"); break;
-  }*/
+  }
+
   /*win.draw_point(100,100,0xFF00);
   win.draw_line(100,100,200,200,0xFF0000);
   win.draw_text(10,10,0x0,"Hello World",strlen("Hello World"));
   win.draw_square(200,200,220,220,0xFF00);
-  win.draw_fsquare(400,400,440,440,0xFF00);*/
- //   }
+  win.draw_fsquare(400,400,440,440,0xFF00);
 
+  win.draw_fsquare(0,0,640,480,0xFFFFFF);
+*/
+win.draw_fsquare(0,0,640,480,0xFFFFFF);
+
+for (int i = 0; i < nb_obstacles; ++i)
+{
+  //my_tab_obstacles[i].Get_Pos().Print_Vector();
+  win.draw_fsquare(my_tab_obstacles[i].Get_Pos().Get_X()-4,my_tab_obstacles[i].Get_Pos().Get_Y()-4,my_tab_obstacles[i].Get_Pos().Get_X()+4,my_tab_obstacles[i].Get_Pos().Get_Y()+4, 0xFF0);
+}
+
+
+
+for(int i =0; i<nb_proies;i++)
+{
+      
+  win.draw_fsquare(my_tab[i].Get_Pos().Get_X()-1.5, my_tab[i].Get_Pos().Get_Y()-1.5,my_tab[i].Get_Pos().Get_X()+1.5, my_tab[i].Get_Pos().Get_Y()+1.5, 0xFF0000);
+}
+
+for(int i =0; i<nb_predateurs;i++)
+{
+      
+  win.draw_fsquare(my_tab_predateur[i].Get_Pos().Get_X()-3, my_tab_predateur[i].Get_Pos().Get_Y()-3,my_tab_predateur[i].Get_Pos().Get_X()+3, my_tab_predateur[i].Get_Pos().Get_Y()+3, 0xFF0000);
+}
+ //usleep(0.00000000000001);
+  my_environnement.Update();
+  //my_environnement.Move_Pred();
+  
+      
+      
+
+  
+   
+   // win.draw_fsquare(0,0,640,480,0xFFFFF0);
+  }
+
+     
 
   return 0;
 }
