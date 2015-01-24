@@ -33,6 +33,7 @@
 const double Area:: y1=0.1;
 const double Area:: y2=0.04;
 const double Area:: y3=2;
+const double Area:: y4=1;
     
 // ===========================================================================
 //                                  Constructors
@@ -180,20 +181,9 @@ void Area::Speed_All(void)
     
      Vect test=tab_Predator[j].Get_Pos()-tab_Prey[i].Get_Pos();
 
-      if (test.Get_Norm()> tab_Prey[j].Get_Perception() )
+      if (test.Get_Norm()< tab_Prey[i].Get_Perception() )
        {
-         double u = 4*((double)rand()/ (double)RAND_MAX);
-         tab_Predator[j].Set_Pos_Random(u);
-       }
-      else
-      {
-        Vect speed_to_give= (test/ test.Get_Norm())*TIME_STEP;
-        
-        tab_Predator[j].Set_Speed(speed_to_give);
-        Speed_4= speed_to_give*(-1);
-
-        tab_Predator[j].Set_Pos(tab_Predator[j].Get_Pos()+speed_to_give*0.000001);
-
+        Speed_4= Speed_4 + test/(test.Get_Norm());
       }
 
     }
@@ -201,12 +191,11 @@ void Area::Speed_All(void)
 
 
     
-    Vect V1=Speed_1*TIME_STEP;
-    
+    Vect V1=Speed_1*TIME_STEP;    
     Vect V2=Speed_2*TIME_STEP;
     Vect V3=Speed_3*TIME_STEP;
     Vect V3_Prime =Speed_3_Prime*TIME_STEP;
-    //Vect V4= Speed_4*TIME_STEP;
+    Vect V4= Speed_4*TIME_STEP;
 
     
       V1=V1*y1;
@@ -217,7 +206,9 @@ void Area::Speed_All(void)
       
       V3_Prime=V3_Prime*y3;
 
-      Vect Final_Speed =V1+V2-V3-V3_Prime-Speed_4;
+      V4=V4*y4;
+
+      Vect Final_Speed =V1+V2-V3-V3_Prime-V4;
 
       Final_Speed =tab_Prey[i].Get_Speed()+ Final_Speed;
       //printf("Valeur de V : ");
@@ -246,26 +237,71 @@ void Area::Speed_All(void)
      } 
 
      tab_Prey[i].Set_Speed(Final_Speed);
-  
 
   }
 }
 
 
-
-
-
-
-
 void Area::Pos_All(void)
-{
-  
+{ 
   for (int i=0; i<Nb_Prey;i++)
   {
     tab_Prey[i].Set_Pos(tab_Prey[i].Get_Pos()+tab_Prey[i].Get_Speed()*TIME_STEP);
   }
 }
 
+void Area::Speed_All_Predator(void)
+{
+  for (int i = 0; i < Nb_Predator; ++i)
+  {
+    Vect Speed_Pred(0,0);
+
+    for (int j=0; j<Nb_Prey;j++)
+    {
+      Vect test=tab_Predator[i].Get_Pos()-tab_Prey[j].Get_Pos();
+
+      if (test.Get_Norm()< tab_Prey[j].Get_Perception() )
+      {
+        Speed_Pred= Speed_Pred + test/(test.Get_Norm());
+      }
+    } 
+
+
+  Speed_Pred= Speed_Pred*TIME_STEP*y4;
+
+  if(tab_Predator[i].Get_Pos().Get_Y()<20)
+     {
+      Speed_Pred.Set_Y(0.02);
+     } 
+
+      else if(tab_Predator[i].Get_Pos().Get_Y()>460)
+     {
+      Speed_Pred.Set_Y(-0.02);
+     } 
+
+
+     if(tab_Predator[i].Get_Pos().Get_X()<20)
+     {
+      Speed_Pred.Set_X(0.02);
+     } 
+
+      else if(tab_Predator[i].Get_Pos().Get_X()>620)
+     {
+      Speed_Pred.Set_X(-0.02);
+     } 
+
+  tab_Predator[i].Set_Speed(Speed_Pred);
+
+  }
+}
+
+void Area::Pos_All_Predator(void)
+{
+  for (int i=0; i<Nb_Predator;i++)
+  {
+    tab_Predator[i].Set_Pos(tab_Predator[i].Get_Pos()+tab_Predator[i].Get_Speed()*TIME_STEP);
+  }
+}
 
 void Area::Update(void)
 {
@@ -274,7 +310,12 @@ void Area::Update(void)
     
     Speed_All();
     Pos_All();
+  }
 
+  for (int i = 0; i <Nb_Predator; ++i)
+  {
+    Speed_All_Predator();
+    Pos_All_Predator();
   }
 }
 

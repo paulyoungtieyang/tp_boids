@@ -29,7 +29,5 @@ test.out: main.o  Vect.o Agent.o Prey.o Predator.o Area.o  bwindow.o Obstacle.o
 	g++ -g -o test.out main.o  Vect.o Agent.o Prey.o Predator.o Area.o Obstacle.o bwindow.o -lX11 -L/usr/X11R6/lib  
 
 clean:
-	rm *.o
+	rm *.o test.out
 
-mrproper: clean
-	rm test.out

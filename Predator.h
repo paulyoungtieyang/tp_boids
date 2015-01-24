@@ -57,6 +57,8 @@ class Predator
     //                            Accessors: getters
     // =======================================================================
     inline Vect Get_Pos(void);
+    inline Vect Get_Speed(void);
+
 
     // =======================================================================
     //                            Accessors: setters
@@ -151,6 +153,11 @@ inline void Predator::Set_Speed(Vect speed_to_give)
 inline Vect Predator::Get_Pos(void)
 {
     return pos;
+}
+
+inline Vect Predator::Get_Speed(void)
+{
+    return speed;
 }
 
 // ===========================================================================

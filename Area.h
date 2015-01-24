@@ -85,7 +85,8 @@ class Area
     void Pos_All(void);
     void Update(void);
     
-    void Move_Pred(void);
+    void Speed_All_Predator(void);
+    void Pos_All_Predator(void);
   
     // =======================================================================
     //                             Public Attributes
@@ -137,6 +138,7 @@ class Area
     static const double y1;
     static const double y2;
     static const double y3;
+    static const double y4;
     
 
 };

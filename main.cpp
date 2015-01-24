@@ -99,7 +99,6 @@ win.draw_fsquare(0,0,640,480,0xFFFFFF);
 
 for (int i = 0; i < nb_obstacles; ++i)
 {
-  //my_tab_obstacles[i].Get_Pos().Print_Vector();
   win.draw_fsquare(my_tab_obstacles[i].Get_Pos().Get_X()-4,my_tab_obstacles[i].Get_Pos().Get_Y()-4,my_tab_obstacles[i].Get_Pos().Get_X()+4,my_tab_obstacles[i].Get_Pos().Get_Y()+4, 0xFF0);
 }
 
@@ -112,21 +111,13 @@ for(int i =0; i<nb_proies;i++)
 }
 
 for(int i =0; i<nb_predateurs;i++)
-{
-      
+{      
   win.draw_fsquare(my_tab_predateur[i].Get_Pos().Get_X()-3, my_tab_predateur[i].Get_Pos().Get_Y()-3,my_tab_predateur[i].Get_Pos().Get_X()+3, my_tab_predateur[i].Get_Pos().Get_Y()+3, 0xFF0000);
 }
- //usleep(0.00000000000001);
-  my_environnement.Update();
-  //my_environnement.Move_Pred();
-  
-      
-      
 
+  my_environnement.Update();
   
-   
-   // win.draw_fsquare(0,0,640,480,0xFFFFF0);
-  }
+}
 
      
 
